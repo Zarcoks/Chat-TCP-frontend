@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+}
+
+/*
+ * Centre la div principale
+ */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e8e8e8;
+    height: 100vh;
+}
+
+/*
+ * Définit les dimensions et donne l'effet shadow
+ */
+main > div {
+    height: 600px;
+    width: 800px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+}
+
+/*
+ * Met de l'espace entre la border et le texte
+ */
+main > div > section {
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+/*
+ * Met chaque message sur une ligne
+ */
+article {
+    display: flex;
+}
+
+/*
+ * Espace horizontal entre la date, le nom, et le message
+ */
+article > * {
+    margin: 0 3px;
+}
+
+/*
+ * La date en gras
+ */
+article div:first-child {
+    font-weight: bold;
+}
+
+/*
+ * Le sender en italic
+ */
+article div:nth-child(2) {
+    font-style: italic;
+}
+
+/*
+ * Balise pour envoyer le message
+ */
+form {
+    height: 60px;
+    display: flex;
+    border-top: solid 3px lightgray;
+}
+
+/*
+ * Le nom de l'utilisateur
+ */
+form > div:first-child {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: large;
+    font-variant-caps: small-caps;
+}
+
+/*
+ * L'input du message
+ */
+form > #messageInput {
+    flex-grow: 5;
+    border: none;
+}
+
+/*
+ * Le submit
+ */
+form > #submit {
+    flex-grow: 1;
+    border-radius: 0;
+}
+
