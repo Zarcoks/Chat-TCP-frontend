@@ -1,8 +1,8 @@
 /**
  * @param date string format [2019-10-24 16:52:14]
- * @param login string format login
+ * @param login string
  * @param message string
- * @returns {HTMLElement} la div article du message complet (date, login, message) construite
+ * @returns {HTMLElement} la div article du message complet (avec date, login, message) construite
  */
 export function construireArticle(date, login, message) {
     const divDate = document.createElement('div');

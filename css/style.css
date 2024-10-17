@@ -1,3 +1,6 @@
+/*
+ * Enlève les margins par défault du body
+ */
 body {
     margin: 0;
 }
@@ -15,6 +18,7 @@ main {
 
 /*
  * Définit les dimensions et donne l'effet shadow
+ * main > div est la div de 800 - 600 px qui contient les messages + le formulaire
  */
 main > div {
     height: 600px;
@@ -27,7 +31,7 @@ main > div {
 }
 
 /*
- * Met de l'espace entre la border et le texte
+ * Met de l'espace entre la border et le texte + barre de scroll
  */
 #divDesMessages {
     padding: 10px;
@@ -66,7 +70,7 @@ article div:nth-child(2) {
  * Balise pour envoyer le message
  */
 form {
-    height: 60px;
+    height: 80px;
     display: flex;
     border-top: solid 3px lightgray;
 }
@@ -87,7 +91,7 @@ form > div:first-child {
 /*
  * L'input du message
  */
-form > #messageInput {
+#messageInput {
     flex-grow: 5;
     border: none;
 }
@@ -95,7 +99,7 @@ form > #messageInput {
 /*
  * Le submit
  */
-form > #submit {
+#submit {
     flex-grow: 1;
     border-radius: 0;
 }
