@@ -4,7 +4,7 @@
  * @param message string
  * @returns {HTMLElement} la div article du message complet (avec date, login, message) construite
  */
-export function construireArticle(date, login, message) {
+export function construireArticleMessage(date, login, message) {
     const divDate = document.createElement('div');
     divDate.innerText = date;
     const divLogin = document.createElement('div');
@@ -27,4 +27,25 @@ export function ajouterMessage(message) {
         document.getElementById("divDesMessages").appendChild(message)
     else
         console.error("Le message n'est pas valide.")
+}
+
+export function construireArticleConnecte(login, date) {
+    const span = document.createElement("span")
+    const formatDate = new Date(date)
+    const tempsDuMessage = Math.round((Date.now() - formatDate)/60000); // En minutes
+    console.log(login + " " + tempsDuMessage)
+    const status = tempsDuMessage <= 5 ? "Connecté" : tempsDuMessage > 720 ? "Déconnecté" : ("Connecté il y a " + tempsDuMessage + " minutes.")
+    span.innerText = login + ": " + status
+    return span
+}
+
+export function ajouterUserConnecte(span) {
+    if (span instanceof HTMLElement)
+        document.querySelector("aside").appendChild(span);
+    else
+        console.error("L'utilisateur à ajouter n'est pas valide.")
+}
+
+export function clearUserConnecte() {
+    document.querySelector("aside").innerHTML = ""
 }

@@ -65,11 +65,43 @@ function loaderMessages(requete) {
     for (let i in allMessages) {
         let elt = allMessages[i]
         let date = elt.Date.split("T") // Permet le formattage
-        builder.ajouterMessage(builder.construireArticle(date[0] + " " + date[1], elt.From, elt.Text))
+        builder.ajouterMessage(builder.construireArticleMessage(date[0] + " " + date[1], elt.From, elt.Text))
     }
+    updateConnectedPeople()
     connexionWebsocket()
 }
 
+function unifierList(allMessages) {
+    let listeAvecDate = []
+    let listeSansDate = []
+    const list = allMessages.reverse()
+    for (let i in list) {
+        if (!listeSansDate.includes(list[i].From)) {
+            listeSansDate.push(list[i].From)
+            listeAvecDate.push(list[i])
+        }
+    }
+    return listeAvecDate
+}
+
+function receiveMessagesToUpdate(requete) {
+    updateConnectedPeople(JSON.parse(requete.responseText))
+}
+
+/**
+ * Clear et remet les utilisateurs connecté
+ * @param allMessages
+ */
+function updateConnectedPeople(allMessages=null) {
+    if (allMessages === null)
+        ajax.envoyerRequete('GET', "http://" + url + "/messages", receiveMessagesToUpdate, null, ["Authorization", "Basic " + user.Token])
+    builder.clearUserConnecte()
+    const listeUnifiee = unifierList(allMessages)
+    for (let i in listeUnifiee) {
+        let span = builder.construireArticleConnecte(listeUnifiee[i].From, listeUnifiee[i].Date)
+        builder.ajouterUserConnecte(span)
+    }
+}
 
 /*
  * ----------------------------------------- *
@@ -102,7 +134,8 @@ function connexionFermee(event) {}
 function messageRecu(event) {
     let elt = JSON.parse(event.data)
     let date = elt.Date.split("T") // Permet le formattage
-    builder.ajouterMessage(builder.construireArticle(date[0] + " " + date[1], elt.From, elt.Text))
+    builder.ajouterMessage(builder.construireArticleMessage(date[0] + " " + date[1], elt.From, elt.Text))
+    updateConnectedPeople()
 }
 
 /**

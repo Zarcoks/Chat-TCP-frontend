@@ -30,6 +30,22 @@ main > div {
     background-color: white;
 }
 
+aside {
+    height: 600px;
+    width: 150px;
+    margin: 0 50px;
+    padding: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    overflow: scroll;
+}
+
+aside > * {
+    margin: 4px 0;
+}
+
 /*
  * Met de l'espace entre la border et le texte + barre de scroll
  */
