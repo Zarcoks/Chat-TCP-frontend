@@ -71,10 +71,17 @@ function loaderMessages(requete) {
     connexionWebsocket()
 }
 
+
+/**
+ * Prend une liste de messages, et renvoie une liste avec uniquement le dernier message de chaque utilisateur
+ * (chaque utilisateur n'apparait alors qu'une fois dans la liste)
+ * @param allMessages
+ * @returns []
+ */
 function unifierList(allMessages) {
     let listeAvecDate = []
     let listeSansDate = []
-    const list = allMessages.reverse()
+    const list = allMessages.reverse() // Sert pour que les derniers messages soient prioritaires
     for (let i in list) {
         if (!listeSansDate.includes(list[i].From)) {
             listeSansDate.push(list[i].From)
@@ -84,12 +91,16 @@ function unifierList(allMessages) {
     return listeAvecDate
 }
 
+/**
+ * Fonction intermédiaire pour recevoir les données des messages à renvoyer à la fonction updateConnectedPeople()
+ * @param requete
+ */
 function receiveMessagesToUpdate(requete) {
     updateConnectedPeople(JSON.parse(requete.responseText))
 }
 
 /**
- * Clear et remet les utilisateurs connecté
+ * Récupère les messages, puis ajoute chaque utilisateur connecté à la balise aside
  * @param allMessages
  */
 function updateConnectedPeople(allMessages=null) {

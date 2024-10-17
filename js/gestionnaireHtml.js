@@ -29,16 +29,25 @@ export function ajouterMessage(message) {
         console.error("Le message n'est pas valide.")
 }
 
+/**
+ * Construit la balise span d'un seul utilisateur connecté, en déterminant préalablement le status
+ * @param login
+ * @param date
+ * @returns {HTMLSpanElement}
+ */
 export function construireArticleConnecte(login, date) {
     const span = document.createElement("span")
     const formatDate = new Date(date)
     const tempsDuMessage = Math.round((Date.now() - formatDate)/60000); // En minutes
-    console.log(login + " " + tempsDuMessage)
     const status = tempsDuMessage <= 5 ? "Connecté" : tempsDuMessage > 720 ? "Déconnecté" : ("Connecté il y a " + tempsDuMessage + " minutes.")
     span.innerText = login + ": " + status
     return span
 }
 
+/**
+ * Ajoute la span en parametre à la balise aside
+ * @param span
+ */
 export function ajouterUserConnecte(span) {
     if (span instanceof HTMLElement)
         document.querySelector("aside").appendChild(span);
@@ -46,6 +55,9 @@ export function ajouterUserConnecte(span) {
         console.error("L'utilisateur à ajouter n'est pas valide.")
 }
 
+/**
+ * Enlève tous les éléments de la balise aside
+ */
 export function clearUserConnecte() {
     document.querySelector("aside").innerHTML = ""
 }

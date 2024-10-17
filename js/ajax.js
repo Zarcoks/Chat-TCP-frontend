@@ -14,3 +14,4 @@ export function envoyerRequete(methode, url, fonctionRetour, data=null, header=n
         requete.onload = () => fonctionRetour(requete)
     requete.send(data);
 }
+
