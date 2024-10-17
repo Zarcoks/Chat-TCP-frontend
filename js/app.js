@@ -95,11 +95,13 @@ function receiveMessagesToUpdate(requete) {
 function updateConnectedPeople(allMessages=null) {
     if (allMessages === null)
         ajax.envoyerRequete('GET', "http://" + url + "/messages", receiveMessagesToUpdate, null, ["Authorization", "Basic " + user.Token])
-    builder.clearUserConnecte()
-    const listeUnifiee = unifierList(allMessages)
-    for (let i in listeUnifiee) {
-        let span = builder.construireArticleConnecte(listeUnifiee[i].From, listeUnifiee[i].Date)
-        builder.ajouterUserConnecte(span)
+    else {
+        builder.clearUserConnecte()
+        const listeUnifiee = unifierList(allMessages)
+        for (let i in listeUnifiee) {
+            let span = builder.construireArticleConnecte(listeUnifiee[i].From, listeUnifiee[i].Date)
+            builder.ajouterUserConnecte(span)
+        }
     }
 }
 
