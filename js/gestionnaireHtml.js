@@ -19,12 +19,12 @@ export function construireArticle(date, login, message) {
 }
 
 /**
- * Ajoute à la section des message le message en paramètre
+ * Ajoute à la div des message le message en paramètre
  * @param message le message en HTMLElement à ajouter
  */
 export function ajouterMessage(message) {
     if (message instanceof HTMLElement)
-        document.querySelector("section").appendChild(message)
+        document.getElementById("divDesMessages").appendChild(message)
     else
         console.error("Le message n'est pas valide.")
 }

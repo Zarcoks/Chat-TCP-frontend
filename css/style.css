@@ -29,7 +29,7 @@ main > div {
 /*
  * Met de l'espace entre la border et le texte
  */
-main > div > section {
+#divDesMessages {
     padding: 10px;
     overflow-y: scroll;
 }
