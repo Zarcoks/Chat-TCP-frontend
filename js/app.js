@@ -26,6 +26,13 @@ const codePermanent = "JOSV14080400"
 let user // Portée globale - user
 let ws   // Portée globale - websocket
 
+/**
+ * Met la scrollbar au niveau le plus
+ */
+function scrollDernierMessage() {
+    const divToScroll = document.querySelector("#divDesMessages")
+    divToScroll.scrollTop = divToScroll.scrollHeight
+}
 
 /**
  * Met à jour le pseudo affiché en fonction du nom de l'utilisateur
@@ -149,6 +156,7 @@ function messageRecu(event) {
     let date = elt.Date.split("T") // Permet le formattage
     builder.ajouterMessage(builder.construireArticleMessage(date[0] + " " + date[1], elt.From, elt.Text))
     updateConnectedPeople()
+    scrollDernierMessage()
 }
 
 /**
