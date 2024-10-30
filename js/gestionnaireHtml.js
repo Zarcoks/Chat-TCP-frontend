@@ -29,6 +29,11 @@ export function ajouterMessage(message) {
         console.error("Le message n'est pas valide.")
 }
 
+/**
+ * En fonction de la date d'envoi d'un message, renvoi le status associé
+ * @param date
+ * @returns {string|string}
+ */
 function getStatus(date) {
     const formatDate = new Date(date)
     const tempsDuMessage = Math.round((Date.now() - formatDate)/60000); // En minutes

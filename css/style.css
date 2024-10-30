@@ -6,48 +6,57 @@ body {
 }
 
 /*
- * Centre la div principale
+ * Main est la div qui contient les cadres principaux
+ * Ici, on centre les cadres principaux, on les aligne et met un background
  */
 main {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     background-color: #e8e8e8;
-    height: 100vh;
+    height: 100vh; /* Permet de forcer le main à prendre tout l'écran */
 }
 
 /*
- * Définit les dimensions et donne l'effet shadow
+ * Définit le style par défaut des cadres principaux (box shadow, height, et alignement
+ */
+main > * {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*
  * main > div est la div de 800 - 600 px qui contient les messages + le formulaire
  */
 main > div {
-    height: 600px;
     width: 800px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     background-color: white;
 }
 
+/*
+ * Le Aside correspond au panneau latéral des connexions
+ */
 aside {
-    height: 600px;
-    width: 150px;
     min-width: 150px;
-    margin: 0 50px;
+    width: 15%;
+    max-width: 200px;
     padding: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    display: flex;
-    flex-direction: column;
     background-color: white;
     overflow: scroll;
 }
 
+/*
+ * Chaque partie correspondant à chaque personne connectée s'espacent verticalement des autres
+ */
 aside > * {
     margin: 4px 0;
 }
 
 /*
+ * DivDesMessages c'est la div qui contient tous les messages
  * Met de l'espace entre la border et le texte + barre de scroll
  */
 #divDesMessages {
@@ -64,15 +73,15 @@ article {
 
 /*
  * Espace horizontal entre la date, le nom, et le message
+ * word break pour sauter la ligne quand le mot dépasse le cadre
  */
 article > * {
     margin: 0 3px;
     word-break: break-word;
-    z-index: 100;
 }
 
 /*
- * La date en gras
+ * La date en gras et anti-saut-de-ligne pour la date
  */
 article div:first-child {
     font-weight: bold;
@@ -80,7 +89,7 @@ article div:first-child {
 }
 
 /*
- * Le sender en italic
+ * Le sender en italic et anti-saut-de-ligne pour le pseudo
  */
 article div:nth-child(2) {
     font-style: italic;

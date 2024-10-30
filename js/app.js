@@ -4,17 +4,7 @@
 
 /**
  * Ce projet a été cette fois réalisé avec encore plus de plaisir que le dernier sur Nami-san.
- *
- * Toutefois, je peux me reprocher de ne pas avoir travaillé la qualité du code, notamment au niveau
- * de la gestion d'erreur.
- *
- * En javascript je ne sais pas comment on fait, et j'ai jugé que cela me couterait trop de temps
- * comparé à la valeur ajoutée, qui plus est dans la période examen où le temps se fait très précieux...
- *
- * Disons que si le projet avait été ammené plus loin, je l'aurai fait sans hésiter.
- *
- * J'espère que cela ne sera pas trop gênant, je tâche actuellement de documenter le code pour qu'il soit un minimum
- * compréhensible.
+ * Auteur: Victor JOST
  */
 
 import * as ajax from "./ajax.js";
@@ -27,7 +17,7 @@ let user // Portée globale - user
 let ws   // Portée globale - websocket
 
 /**
- * Met la scrollbar au niveau le plus
+ * Met la scrollbar au niveau le plus bas
  */
 function scrollDernierMessage() {
     const divToScroll = document.querySelector("#divDesMessages")
@@ -82,13 +72,15 @@ function loaderMessages(requete) {
 /**
  * Prend une liste de messages, et renvoie une liste avec uniquement le dernier message de chaque utilisateur
  * (chaque utilisateur n'apparait alors qu'une fois dans la liste)
+ * L'utilité de cette fonction est surtout mise en valeur dans l'affichage de temps de connexion des utilisateurs
  * @param allMessages
- * @returns []
+ * @returns [] l'ensemble du dernier message de chaque utilisateur
  */
 function unifierList(allMessages) {
     let listeAvecDate = []
     let listeSansDate = []
-    const list = allMessages.reverse() // Sert pour que les derniers messages soient prioritaires
+    console.log(allMessages)
+    const list = allMessages.reverse() // Sert pour que les derniers messages soient prioritaires par rapport aux premiers
     for (let i in list) {
         if (!listeSansDate.includes(list[i].From)) {
             listeSansDate.push(list[i].From)
