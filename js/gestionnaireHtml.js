@@ -29,6 +29,12 @@ export function ajouterMessage(message) {
         console.error("Le message n'est pas valide.")
 }
 
+function getStatus(date) {
+    const formatDate = new Date(date)
+    const tempsDuMessage = Math.round((Date.now() - formatDate)/60000); // En minutes
+    return tempsDuMessage <= 5 ? "Connecté" : tempsDuMessage > 720 ? "Déconnecté" : ("Connecté il y a " + tempsDuMessage + " minutes.")
+}
+
 /**
  * Construit la balise span d'un seul utilisateur connecté, en déterminant préalablement le status
  * @param login
@@ -37,10 +43,13 @@ export function ajouterMessage(message) {
  */
 export function construireArticleConnecte(login, date) {
     const span = document.createElement("span")
-    const formatDate = new Date(date)
-    const tempsDuMessage = Math.round((Date.now() - formatDate)/60000); // En minutes
-    const status = tempsDuMessage <= 5 ? "Connecté" : tempsDuMessage > 720 ? "Déconnecté" : ("Connecté il y a " + tempsDuMessage + " minutes.")
-    span.innerText = login + ": " + status
+    span.innerText = login + ": " + getStatus(date)
+
+    // met à jour le status toutes les minutes
+    setInterval(function() {
+        span.innerText = login + ": " + getStatus(date)
+    }, 60000);
+
     return span
 }
 
