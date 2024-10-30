@@ -65,36 +65,37 @@ aside > * {
 }
 
 /*
- * Met chaque message sur une ligne
+ * Chaque message
  */
 article {
-    display: flex;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    margin: 8px 0;
 }
 
 /*
- * Espace horizontal entre la date, le nom, et le message
- * word break pour sauter la ligne quand le mot dépasse le cadre
+ * Tous les enfants
  */
 article > * {
-    margin: 0 3px;
-    word-break: break-word;
+    margin-right: 5px;
 }
 
 /*
- * La date en gras et anti-saut-de-ligne pour la date
+ * La date
  */
-article div:first-child {
+article > span:first-child {
     font-weight: bold;
     white-space: nowrap;
 }
 
 /*
- * Le sender en italic et anti-saut-de-ligne pour le pseudo
+ * Le username
  */
-article div:nth-child(2) {
+article > span:nth-child(2) {
     font-style: italic;
-    white-space: nowrap;
 }
+
 
 /*
  * Balise pour envoyer le message

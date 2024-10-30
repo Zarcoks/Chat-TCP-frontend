@@ -5,17 +5,15 @@
  * @returns {HTMLElement} la div article du message complet (avec date, login, message) construite
  */
 export function construireArticleMessage(date, login, message) {
-    const divDate = document.createElement('div');
-    divDate.innerText = date;
-    const divLogin = document.createElement('div');
+    const divDate = document.createElement('span');
+    divDate.innerText = "[" + date + "]";
+    const divLogin = document.createElement('span');
     divLogin.innerText = "(" + login + ")";
-    const divMessage = document.createElement('div');
-    divMessage.innerText = message;
-    const article = document.createElement('article');
-    article.appendChild(divDate);
-    article.appendChild(divLogin);
-    article.appendChild(divMessage);
-    return article;
+    const divMessage = document.createElement('article');
+    divMessage.appendChild(divDate);
+    divMessage.appendChild(divLogin);
+    divMessage.appendChild(document.createTextNode(message))
+    return divMessage;
 }
 
 /**
